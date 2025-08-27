@@ -220,7 +220,7 @@ function ResultsContent() {
             className="bg-gray-900/50 rounded-2xl p-6 border border-gray-700"
           >
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold">AI Generated Video</h2>
+              <h2 className="text-xl font-semibold">Your Sample Art Video</h2>
               {isGeneratingVideo && (
                 <div className="flex items-center space-x-2 text-blue-400">
                   <div className="animate-spin w-4 h-4 border-2 border-blue-400 border-t-transparent rounded-full"></div>
@@ -268,7 +268,7 @@ function ResultsContent() {
             className="bg-gray-900/50 rounded-2xl p-6 border border-gray-700"
           >
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold">AI Generated Landing Page</h2>
+              <h2 className="text-xl font-semibold">Your Sample Landing Page</h2>
               {isGeneratingLanding && (
                 <div className="flex items-center space-x-2 text-green-400">
                   <div className="animate-spin w-4 h-4 border-2 border-green-400 border-t-transparent rounded-full"></div>
