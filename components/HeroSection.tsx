@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import PromptInputBox from "./PromptInputBox";
 import IntegrationIcons from "./IntegrationIcons";
 
+import { Clover } from 'lucide-react';
+
 export default function HeroSection() {
   // const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
@@ -29,6 +31,12 @@ export default function HeroSection() {
   // }, []);
 
   const handleGenerateClick = () => {
+    setShowPopup(true);
+  };
+
+  const handleFeelingLucky = () => {
+    setCurrentPrompt("Build me a lead generation funnel that captures prospects from social media, qualifies them through...")
+    localStorage.setItem('userPrompt', currentPrompt);
     setShowPopup(true);
   };
 
@@ -170,15 +178,30 @@ export default function HeroSection() {
 
       {/* Generate Now Button */}
       <motion.div
-        className="mb-12"
+        className="mb-12 flex gap-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}
         data-testid="generate-button-section"
       >
         <button
+          onClick={handleFeelingLucky}
+          className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-12 py-4 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25 hover:shadow-glow transform hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2"
+          data-testid="button-generate-now"
+        >
+          <Clover height={20} />
+
+          I am feeling lucky
+
+          {/* <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+          </svg> */}
+        </button>
+
+
+        <button
           onClick={handleGenerateClick}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-12 py-4 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25 hover:shadow-glow transform hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-12 py-4 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25 hover:shadow-glow transform hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2"
           data-testid="button-generate-now"
         >
           Generate Now
@@ -186,6 +209,7 @@ export default function HeroSection() {
             <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
           </svg>
         </button>
+
       </motion.div>
 
       {/* Integration Icons */}
@@ -295,11 +319,23 @@ export default function HeroSection() {
                 >
                   Start Generating
                 </button>
-              </form>
+              {/* </form> */}
 
-              <p className="text-xs text-gray-500 text-center mt-4">
-                By continuing, you agree to our terms of service and privacy policy.
-              </p>
+              <div className="flex flex-col items-center mt-4">
+                <label className="flex items-center text-xs text-gray-500">
+                  <input
+                    type="checkbox"
+                    defaultChecked
+                    required
+                    className="mr-2 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  />
+                  I agree to the <a href="/" className="underline mx-1"> terms of service </a> and <a href="/" className="underline mx-1"> privacy policy </a>.
+                </label>
+              </div>
+
+              </form>
+              
+
             </motion.div>
           </motion.div>
         )}
