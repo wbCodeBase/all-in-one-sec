@@ -7,6 +7,7 @@ import PromptInputBox from "./PromptInputBox";
 import IntegrationIcons from "./IntegrationIcons";
 
 import { Clover } from 'lucide-react';
+import Link from "next/link";
 
 export default function HeroSection() {
   // const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -329,7 +330,7 @@ export default function HeroSection() {
                     required
                     className="mr-2 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                   />
-                  I agree to the <a href="/" className="underline mx-1"> terms of service </a> and <a href="/" className="underline mx-1"> privacy policy </a>.
+                  I agree to the <Link href="/" className="underline mx-1"> terms of service </Link> and <Link href="/" className="underline mx-1"> privacy policy </Link>.
                 </label>
               </div>
 

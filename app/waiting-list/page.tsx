@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Check, ChevronRight, Building2, Server, Rocket } from "lucide-react";
+import { Mail, Check, ChevronRight, Building2, Server } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -180,9 +180,9 @@ export default function WaitlistPage() {
                             <div className="h-14 w-14 rounded-full bg-emerald-500/20 flex items-center justify-center">
                                 <Check className="h-7 w-7" />
                             </div>
-                            <h3 className="mt-4 text-2xl font-semibold">You're on the list!</h3>
+                            <h3 className="mt-4 text-2xl font-semibold">Your are on the list!</h3>
                             <p className="mt-2 max-w-xl text-slate-300">
-                                Thanks {name.split(" ")[0]}. We'll email <span className="font-medium text-white">{email}</span> with early access details and a short onboarding questionnaire.
+                                Thanks {name.split(" ")[0]}. We will email <span className="font-medium text-white">{email}</span> with early access details and a short onboarding questionnaire.
                             </p>
                             <div className="mt-6 text-sm text-slate-400">Want to move faster? Hit reply to that email and tell us your top use case.</div>
                         </div>
