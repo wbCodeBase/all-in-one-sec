@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+
+@theme {
+    --color-dark-primary: #000;
+    --accent-yellow: hsl(42.8571 95.1220% 58.2353%);
+
+    --dark-primary: hsl(0 0% 3.9216%);
+    --dark-secondary: hsl(0 0% 10.1961%);
+    --accent-green: hsl(159.7826 100% 36.0784%);
+}
+
+
+
+.bg-dark-primary {
+    background-color: var(--color-dark-primary);
+}
+
+.bg-accent-yellow {
+    background-color: var(--accent-yellow);
+}
+
+.bg-accent-green {
+    background-color: var(--accent-green);
+}
