@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import Navigation from '@/components/Navigation';
 
 
 
@@ -43,8 +44,6 @@ function ResultsContent() {
 
 
   const [userPrompt, setUserPrompt] = useState('');
-  const [userName, setUserName] = useState('');
-  // const [userEmail, setUserEmail] = useState('');
   const [userCompany, setUserCompany] = useState('');
 
 
@@ -55,7 +54,6 @@ function ResultsContent() {
     const company = searchParams.get('company') || localStorage.getItem('userCompany') || '';
     // const email = searchParams.get('email') || localStorage.getItem('userEmail') || '';
     setUserPrompt(prompt);
-    setUserName(name);
     setUserCompany(company);
     // setUserEmail(email);
   }, [searchParams]);
@@ -186,16 +184,8 @@ function ResultsContent() {
 
     <div className="min-h-screen bg-dark-primary text-white">
       {/* Header */}
-      <header className="border-b border-gray-800 p-6">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <span className="text-3xl font-semibold">Weone<span className='text-green-500'>AI</span></span>
-          </div>
-          <div className="text-gray-400">
-            Welcome, {userName}
-          </div>
-        </div>
-      </header>
+
+     <Navigation />
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto p-6">

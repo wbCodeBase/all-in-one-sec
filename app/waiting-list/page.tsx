@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Check, ChevronRight, Building2, Server } from "lucide-react";
+import { Mail, Check, ChevronRight   } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,6 +14,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import Navigation from "@/components/Navigation";
 
 export default function WaitlistPage() {
     const [name, setName] = useState("");
@@ -50,29 +51,21 @@ export default function WaitlistPage() {
             </div>
 
             {/* Navbar */}
-            <header className="mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                  <Navigation />
 
-                    <span className="text-3xl font-semibold">Weone<span className="text-green-500">AI</span></span>
-                </div>
-                <div className="hidden sm:flex items-center gap-4">
-                    {/* <a href="#why" className="text-sm/6 opacity-80 hover:opacity-100 transition">Why us</a>
-          <a href="#industries" className="text-sm/6 opacity-80 hover:opacity-100 transition">Industries</a> */}
-                    <Button onClick={handleScrollToForm} className="rounded-2xl cursor-pointer">Join Waitlist</Button>
-                </div>
-            </header>
 
             {/* Hero */}
-            <section className="mx-auto max-w-7xl px-6 pt-6 pb-20">
-                <div className="grid lg:grid-cols-2 gap-10 items-center">
-                    <div>
+            <section className="mx-auto max-w-5xl px-6 pt-6 pb-20">
+                <div className="items-center">
+
+                    <div className="flex justify-center items-center flex-col text-center gap-2">
                         <motion.h1
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
                             className="text-3xl sm:text-5xl font-bold tracking-tight"
                         >
-                            AI Funnels Built for IT & Real Estate — Expanding Into More Industries Every Day
+                            AI Funnels Built for IT & Real Estate Expanding Into More Industries Every Day
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 10 }}
@@ -83,23 +76,22 @@ export default function WaitlistPage() {
                             We currently specialize in IT and Real Estate automation, but we’re building new use cases and funnels across industries. Join our waitlist to become a test user and get early access.
                         </motion.p>
                         <div className="mt-8 flex flex-wrap gap-3">
-                            <Button size="lg" onClick={handleScrollToForm} className="rounded-2xl cursor-pointer text-base">
+                            <Button size="lg" onClick={handleScrollToForm} className="rounded-2xl cursor-pointer text-base bg-blue-500 hover:bg-blue-600">
                                 Join Waitlist
                                 <ChevronRight className="ml-1 h-5 w-5" />
                             </Button>
-                            {/* <a href="#industries" className="rounded-2xl px-5 py-3 text-base bg-white/5 hover:bg-white/10 transition">
-                See industries
-              </a> */}
+
                         </div>
-                        <div className="mt-8 flex items-center gap-4 text-sm text-slate-400">
+                        {/* <div className="mt-8 flex items-center gap-4 text-sm text-slate-400">
                             <div className="flex items-center gap-2"><Check className="h-4 w-4" />No spam</div>
                             <div className="flex items-center gap-2"><Check className="h-4 w-4" />Cancel anytime</div>
                             <div className="flex items-center gap-2"><Check className="h-4 w-4" />Early access perks</div>
-                        </div>
+                        </div> */}
                     </div>
 
+
                     {/* Highlight cards */}
-                    <div className="grid sm:grid-cols-2 gap-4">
+                    {/* <div className="grid sm:grid-cols-2 gap-4">
                         <Card className="rounded-2xl bg-white/5 backdrop-blur supports-[backdrop-filter]:bg-white/10 border-white/10">
                             <CardContent className="p-6">
                                 <div className="flex items-center justify-between">
@@ -129,11 +121,11 @@ export default function WaitlistPage() {
                                         <div className="text-sm text-slate-300">Roadmap</div>
                                         <p className="text-sm text-slate-400">Healthcare • Education • Finance • Hospitality • Local Services</p>
                                     </div>
-                                    {/* <Button onClick={handleScrollToForm} className="rounded-2xl">Become a test user</Button> */}
                                 </div>
                             </CardContent>
                         </Card>
-                    </div>
+                    </div> */}
+
                 </div>
             </section>
 
@@ -143,7 +135,7 @@ export default function WaitlistPage() {
                     {["Conversion-first designs", "Human-in-the-loop when needed", "Integrates with your stack"].map((title, i) => (
                         <Card key={i} className="rounded-2xl bg-white/5 border-white/10">
                             <CardContent className="p-6">
-                                <h4 className="font-semibold">{title}</h4>
+                                <h4 className="font-semibold text-white">{title}</h4>
                                 <p className="mt-2 text-sm text-slate-400">
                                     {i === 0 && "Crafted funnels, not chat toys. Capture, qualify, and route with intent-awareness."}
                                     {i === 1 && "Escalations and approvals flow to your team with context when automation isn't enough."}
@@ -157,7 +149,7 @@ export default function WaitlistPage() {
 
             {/* Industries pill bar */}
             <section id="industries" className="mx-auto max-w-7xl px-6 pb-6">
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 items-center justify-center">
                     {["IT & SaaS", "Real Estate", "Healthcare", "Education", "Finance", "Hospitality", "Local Services", "E‑commerce", "Legal"].map((chip) => (
                         <span key={chip} className="px-3 py-1 rounded-full text-xs bg-white/5 border border-white/10">
                             {chip}
@@ -251,7 +243,7 @@ export default function WaitlistPage() {
                             )}
 
                             <div className="sm:col-span-2 flex flex-wrap gap-3">
-                                <Button type="submit" size="lg" className="cursor-pointer rounded-2xl bg-white/5 hover:bg-white/10 ">
+                                <Button type="submit" size="lg" className="cursor-pointer rounded-2xl bg-blue-500 hover:bg-blue-600">
                                     Join Waitlist
                                     <ChevronRight className="ml-1 h-5 w-5" />
                                 </Button>

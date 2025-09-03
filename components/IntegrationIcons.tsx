@@ -9,7 +9,7 @@ export default function IntegrationIcons() {
     { name: "Docker", icon: "🐳" },
     { name: "Database", icon: "🗄️" }
   ];
-
+ 
   return (
     <div className="mb-16" data-testid="integration-icons">
       <p className="text-gray-400 text-sm mb-6 uppercase tracking-wider">Integrates with your favorite tools</p>

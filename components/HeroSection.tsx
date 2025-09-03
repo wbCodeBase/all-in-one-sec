@@ -187,7 +187,7 @@ export default function HeroSection() {
       >
         <button
           onClick={handleFeelingLucky}
-          className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-12 py-4 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25 hover:shadow-glow transform hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2"
+          className="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-12 py-4 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25 hover:shadow-glow transform hover:scale-[1.02] active:scale-[0.98] flex items-center gap-2"
           data-testid="button-generate-now"
         >
           <Clover height={20} />
@@ -318,7 +318,7 @@ export default function HeroSection() {
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 transform hover:scale-[1.02] active:scale-[0.98] mt-6"
                   data-testid="button-submit-form"
                 >
-                  Start Generating
+                  Automate Business Now
                 </button>
               {/* </form> */}
 
