@@ -18,9 +18,17 @@ export default function Home() {
         </div>
       </div>
 
+
+
       <Navigation />
+
+      
       <HeroSection />
+
+
       <Footer />
+
+
       <FloatingCTA />
     </div>
   );

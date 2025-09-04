@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from 'next/navigation';
-import PromptInputBox from "./PromptInputBox";
-import IntegrationIcons from "./IntegrationIcons";
+import PromptInputBox from "@/components/PromptInputBox";
+import IntegrationIcons from "@/components/IntegrationIcons";
 
 import { Clover } from 'lucide-react';
 import Link from "next/link";
@@ -12,28 +12,24 @@ import Link from "next/link";
 export default function HeroSection() {
   // const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', company: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', phone: '', countryCode: '' });
   const navigate = useRouter();
   const [currentPrompt, setCurrentPrompt] = useState('');
 
-  // const dynamicWords = [
-  //   "scalable backends",
-  //   "event-driven systems",
-  //   "automation tools",
-  //   "SaaS applications"
-  // ];
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentWordIndex((prev) => (prev + 1) % dynamicWords.length);
-  //   }, 2000);
-
-  //   return () => clearInterval(interval);
-  // }, []);
 
   const handleGenerateClick = () => {
-    setShowPopup(true);
+    if (currentPrompt) setShowPopup(true);
   };
+
+
+  const steps = [
+    { label: "Marketing", color: "text-accent-green" },
+    { label: "Nurture", color: "text-yellow-500" },
+    { label: "Qualify", color: "text-blue-500" },
+    { label: "Sales", color: "text-amber-500" },
+    { label: "Closing", color: "text-pink-500" },
+  ];
+
 
   const handleFeelingLucky = () => {
     setCurrentPrompt("Build me a lead generation funnel that captures prospects from social media, qualifies them through...")
@@ -48,6 +44,11 @@ export default function HeroSection() {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+
+    const fullPhone = `${formData.countryCode}${formData.phone}`;
+
+    console.log("Full phone:", fullPhone);
+
     // Store user data
     localStorage.setItem('userName', formData.name);
     localStorage.setItem('userEmail', formData.email);
@@ -58,10 +59,12 @@ export default function HeroSection() {
     navigate.push(`/results?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&prompt=${encodeURIComponent(currentPrompt)}`);
 
     setShowPopup(false);
-    setFormData({ name: '', email: '', company: '' });
+    setFormData({ name: '', email: '', company: '', phone: '', countryCode: '' });
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
@@ -82,23 +85,12 @@ export default function HeroSection() {
         transition={{ duration: 0.6, delay: 0.2 }}
         data-testid="main-headline"
       >
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-          All-in-one AI <br />
+        <h1 className="text-4xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          All-in-one AI
+          to get Customers on Autopilot <br />
           <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-500 bg-clip-text text-transparent">
-            With Human Touch
+            with Human Touch
           </span>
-
-          {/* <motion.span
-            className="bg-gradient-to-r from-blue-400 via-purple-500 to-indigo-500 bg-clip-text text-transparent"
-            key={currentWordIndex}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            data-testid="dynamic-word"
-          > */}
-          {/* {dynamicWords[currentWordIndex]} */}
-          {/* </motion.span> */}
         </h1>
       </motion.div>
 
@@ -111,15 +103,32 @@ export default function HeroSection() {
         data-testid="subheadline"
       >
         <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-          Give us a simple prompt and instantly see your <span className="text-white font-medium"> AI-powered video and website prototype crafted fast by AI,</span> perfected with a human touch.
-
+          {/* Give us a simple prompt and instantly see your <span className="text-white font-medium"> AI-powered video and website prototype crafted fast by AI,</span> perfected with a human touch. */}
+          Give us a simple prompt, <span className="text-white font-medium">watch how AI + human touch</span> builds your ads, landing pages, automates follow-up, books meetings, and helps you close more deals.
         </p>
       </motion.div>
 
 
       {/* Open Source Badge */}
-
       <div className="flex gap-4 mb-10 justify-center items-center flex-wrap">
+        {steps.map((step, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+          >
+            <span
+              className={`inline-flex font-medium items-center px-4 py-2 bg-accent-green/10 rounded-full text-sm border border-accent-green/20 ${step.color}`}
+            >
+              {step.label}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+
+
+      {/* <div className="flex gap-4 mb-10 justify-center items-center flex-wrap">
         <motion.div
 
           initial={{ opacity: 0, y: 20 }}
@@ -164,7 +173,7 @@ export default function HeroSection() {
             Closing
           </span>
         </motion.div>
-      </div>
+      </div> */}
 
 
       {/* AI Prompt Input Box */}
@@ -179,7 +188,7 @@ export default function HeroSection() {
 
       {/* Generate Now Button */}
       <motion.div
-        className="mb-12 flex gap-8"
+        className="mb-12 flex flex-wrap-reverse justify-center items-center gap-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}
@@ -198,7 +207,6 @@ export default function HeroSection() {
             <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
           </svg> */}
         </button>
-
 
         <button
           onClick={handleGenerateClick}
@@ -219,7 +227,12 @@ export default function HeroSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.0 }}
       >
+
+
         <IntegrationIcons />
+
+
+
       </motion.div>
 
       {/* Popup Form */}
@@ -240,7 +253,7 @@ export default function HeroSection() {
 
             {/* Form */}
             <motion.div
-              className="relative bg-gray-900 border border-gray-700 rounded-3xl p-8 w-full max-w-md shadow-2xl"
+              className="relative z-10 bg-gray-900 border border-gray-700 rounded-3xl p-8 w-full max-w-md shadow-2xl"
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
@@ -260,7 +273,7 @@ export default function HeroSection() {
               {/* Form Header */}
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold text-white mb-2">Get Started with WeoneAI</h3>
-                <p className="text-gray-400">Enter your details to begin generating amazing applications</p>
+                <p className="text-gray-400">Enter your details to begin Business Automation</p>
               </div>
 
               {/* Form */}
@@ -279,6 +292,48 @@ export default function HeroSection() {
                     placeholder="Enter your full name"
                     data-testid="input-name"
                   />
+                </div>
+
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2 text-left">
+                    Phone
+                  </label>
+                  <div className="flex gap-2">
+                    {/* Country Code Select */}
+                    <select
+                      name="countryCode"
+                      value={formData.countryCode}
+                      onChange={handleInputChange}
+                      className="px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    >
+                      <option value="">Code</option>
+                      <option value="+91">🇮🇳 +91</option>
+                      <option value="+1">🇺🇸 +1</option>
+                      <option value="+44">🇬🇧 +44</option>
+                      <option value="+61">🇦🇺 +61</option>
+                      <option value="+971">🇦🇪 +971</option>
+                    </select>
+
+                    {/* Phone Input */}
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={
+                        // const val = e.target.value.replace(/\D/g, "").slice(0, 15);
+                        handleInputChange
+                      }
+                      maxLength={15}
+                      pattern="[0-9]{7,15}" // validation: 7–15 digits
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      placeholder="Enter your phone"
+                      data-testid="input-phone"
+                    />
+                  </div>
+                  {/* <p className="text-xs text-gray-400 mt-1">
+                    Phone number must be 7–15 digits
+                  </p> */}
                 </div>
 
                 <div>
@@ -315,27 +370,27 @@ export default function HeroSection() {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 transform hover:scale-[1.02] active:scale-[0.98] mt-6"
+                  className="w-full bg-blue-600 hover:bg-blue-700 cursor-pointer text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 transform hover:scale-[1.02] active:scale-[0.98] mt-6"
                   data-testid="button-submit-form"
                 >
                   Automate Business Now
                 </button>
-              {/* </form> */}
+                {/* </form> */}
 
-              <div className="flex flex-col items-center mt-4">
-                <label className="flex items-center text-xs text-gray-500">
-                  <input
-                    type="checkbox"
-                    defaultChecked
-                    required
-                    className="mr-2 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                  />
-                  I agree to the <Link href="/" className="underline mx-1"> terms of service </Link> and <Link href="/" className="underline mx-1"> privacy policy </Link>.
-                </label>
-              </div>
+                <div className="flex flex-col items-center mt-4">
+                  <label className="flex items-center text-xs text-gray-500">
+                    <input
+                      type="checkbox"
+                      defaultChecked
+                      required
+                      className="mr-2 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    />
+                    I agree to the <Link href="/" className="underline mx-1"> terms of service </Link> and <Link href="/" className="underline mx-1"> privacy policy </Link>.
+                  </label>
+                </div>
 
               </form>
-              
+
 
             </motion.div>
           </motion.div>

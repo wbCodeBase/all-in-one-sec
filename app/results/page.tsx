@@ -16,9 +16,7 @@ function ResultsContent() {
   const navigate = useRouter();
   const [isGeneratingVideo, setIsGeneratingVideo] = useState(true);
   const [isGeneratingLanding, setIsGeneratingLanding] = useState(true);
-  // const [videoContent, setVideoContent] = useState('');
-  // const [landingPageContent, setLandingPageContent] = useState('');
-  // const [error, setError] = useState('');
+
 
   // Onboarding states
   const [businessType, setBusinessType] = useState("");
@@ -35,12 +33,6 @@ function ResultsContent() {
     }
   }, []);
 
-
-  // useEffect(() => {
-  //     if(businessType==="Other" && goal){
-  //       navigate.push("/waiting-list")
-  //     }
-  // }, [businessType]);
 
 
   const [userPrompt, setUserPrompt] = useState('');
@@ -63,63 +55,22 @@ function ResultsContent() {
     console.log("userCompany", userCompany);
   }, [userCompany])
 
-  // const urlParams = new URLSearchParams(window.location.search);
-  // const userPrompt = urlParams.get('prompt') || localStorage.getItem('userPrompt') || '';
-  // const userName = urlParams.get('name') || localStorage.getItem('userName') || '';
-  // const userEmail = urlParams.get('email') || localStorage.getItem('userEmail') || '';
 
-  // useEffect(() => {
-  //   if (!userPrompt) {
-  //     navigate.push('/');
-  //     return;
-  //   }
-  // }, [userPrompt, navigate, showOnboarding]);
 
   setTimeout(() => {
     setIsGeneratingVideo(false);
     setIsGeneratingLanding(false);
   }, 2000);
 
-  // const generateContent = async () => {
-  //   try {
-  //     await generateLandingPage();
-  //   } catch (err) {
-  //     setError('Failed to generate content. Please try again.');
-  //     console.error('Generation error:', err);
-  //   }
-  // };
-
-  // const generateLandingPage = async () => {
-  //   try {
-  //     const response = await fetch('/api/generate-landing', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({ prompt: userPrompt, userName, userEmail }),
-  //     });
-
-  //     if (!response.ok) throw new Error('Failed to generate landing page');
-
-  //     const data = await response.json();
-  //     setLandingPageContent(data.landingContent);
-  //     setIsGeneratingLanding(false);
-  //   } catch (err) {
-  //     console.error('Landing page generation error:', err);
-  //     setLandingPageContent('Landing page generation failed. Please try again.');
-  //     setIsGeneratingLanding(false);
-  //   }
-  // };
 
   // Handle onboarding save
   const handleContinue = () => {
-    // localStorage.setItem("businessType", "");
-    // localStorage.setItem("goal", "");
 
     if (businessType === "Other" && goal) {
       navigate.push("/waiting-list")
     }
 
     setShowOnboarding(false);
-    // generateContent();
   };
 
   // 🔹 Onboarding UI
@@ -131,6 +82,25 @@ function ResultsContent() {
           <h2 className="text-2xl font-bold text-white mb-6 text-center">Tell us about your business</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            {/* Business Type */}
+            {/* <div>
+              <label className="block text-sm text-gray-300 mb-2">What is your business?</label>
+              <select
+                value={businessType}
+                onChange={(e) => setBusinessType(e.target.value)}
+                className="w-full rounded-xl p-3 bg-gray-800 text-white border border-gray-600 focus:border-green-500 focus:ring-green-500"
+              >
+                <option value="">Select...</option>
+                <option value="IT">IT</option>
+                <option value="Real Estate">Real Estate</option>
+                <option value="Other">Other</option>
+              </select>
+            </div> */}
+
+
+
+
+
             {/* Business Type */}
             <div>
               <label className="block text-sm text-gray-300 mb-2">What is your business?</label>
@@ -144,7 +114,24 @@ function ResultsContent() {
                 <option value="Real Estate">Real Estate</option>
                 <option value="Other">Other</option>
               </select>
+
+              {/* Show input only if "Other" is selected */}
+              {businessType === "Other" && (
+                <input
+                  type="text"
+                  placeholder="Ex- Hotel, School, Healthcare, Retail & Finance..."
+                  className="mt-3 w-full rounded-xl p-3 bg-gray-800 text-white border border-gray-600 focus:border-green-500 focus:ring-green-500"
+                  onChange={(e) => localStorage.setItem("businessType", e.target.value)}
+                />
+              )}
             </div>
+
+
+
+
+
+
+
 
             {/* Goal */}
             <div>
@@ -185,7 +172,7 @@ function ResultsContent() {
     <div className="min-h-screen bg-dark-primary text-white">
       {/* Header */}
 
-     <Navigation />
+      <Navigation />
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto p-6">
@@ -200,14 +187,13 @@ function ResultsContent() {
 
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-[calc(100vh-250px)]"> */}
 
           {/* Left Section - Video */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-gray-900/50 rounded-2xl p-6 border border-gray-700"
+            className="bg-gray-900/50 rounded-2xl p-4 border border-gray-700"
           >
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold">Your Sample Art Video</h2>
@@ -219,7 +205,7 @@ function ResultsContent() {
               )}
             </div>
 
-            <div className="min-h-96 bg-gray-800/50 rounded-xl flex items-center justify-center">
+            <div className="md:min-h-96 min-h-84 bg-gray-800/50 rounded-xl flex items-center justify-center">
               {isGeneratingVideo ? (
                 <div className="text-center">
                   <div className="animate-pulse">
@@ -228,26 +214,39 @@ function ResultsContent() {
                   </div>
                 </div>
               ) : (
-                <div className="w-full h-full p-4">
-                  <div className="bg-black relative rounded-lg aspect-video flex items-center justify-center mb-4">
-
-                    <video width="640" height="360" controls>
-                      <source src="/videotemplate.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
 
 
+                <>
+                  <div className="w-full h-full sm:p-4">
+                    <div className="bg-black relative rounded-lg aspect-video flex items-center justify-center mb-4">
 
-                    <div className="absolute top-4 left-12 -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-lg text-lg font-semibold shadow-md">
-                      {userCompany}
+                      <video width="640" height="360" controls>
+                        <source src="/videotemplate.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+
+
+
+                      <div className="absolute top-4 left-4 bg-black/50 text-white px-4 py-2 rounded-lg text-lg font-semibold shadow-md">
+                        {userCompany}
+                      </div>
+
                     </div>
 
+
+
+                  <div className='flex my-6 items-center justify-center'>
+                    <Link className='bg-blue-500 hover:bg-blue-600 transition ease-in px-8 font-semibold py-3 rounded-lg' href="https://cal.com/weoneai/30min">Make it Better</Link>
                   </div>
+                  </div>
+                </>
 
-
-                </div>
               )}
             </div>
+
+
+
+
           </motion.div>
 
           {/* Right Section - Landing Page */}
@@ -255,7 +254,7 @@ function ResultsContent() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
-            className="bg-gray-900/50 rounded-2xl p-6 border border-gray-700"
+            className="bg-gray-900/50 rounded-2xl p-4 border border-gray-700"
           >
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold">Your Sample Landing Page</h2>
@@ -269,7 +268,7 @@ function ResultsContent() {
 
             <div className="bg-gray-800/50 rounded-xl overflow-hidden">
               {isGeneratingLanding ? (
-                <div className="flex min-h-96 items-center justify-center">
+                <div className="flex md:min-h-96 min-h-84 items-center justify-center">
                   <div className="text-center">
                     <div className="animate-pulse">
                       <div className="w-32 h-40 bg-gray-700 rounded-lg mx-auto mb-4"></div>
@@ -280,53 +279,40 @@ function ResultsContent() {
               ) : (
 
 
-                // <div className="w-full min-h-96 p-4">
-                //   <div className="bg-white rounded-lg h-full overflow-auto">
-                //     <div className="p-4 text-black text-sm">
-                //       <div className="bg-gray-100 p-4 rounded mb-4">
-                //         <h3 className="font-bold text-lg mb-2">Landing Page Preview</h3>
-                //         <div className="bg-blue-500 text-white p-2 rounded text-center mb-4">
-                //           Sample Header
-                //         </div>
-                //         <div className="space-y-2 text-gray-600">
-                //           {landingPageContent.split('\n').slice(0, 10).map((line, index) => (
-                //             <p key={index} className="text-xs">{line}</p>
-                //           ))}
-                //         </div>
-                //       </div>
-                //     </div>
-                //   </div>
-                // </div>
+                <>
 
-                <div className="w-full min-h-96 md:p-4">
-                  <div className="bg-white rounded-lg h-full overflow-auto">
-                    <div className="p-4 text-black text-sm">
-                      <div className="bg-gray-100 p-4 rounded mb-4">
-                        {/* <h3 className="font-bold text-lg mb-2">Landing Page Preview</h3> */}
+                  <div className="w-full md:min-h-96 min-h-84 md:p-4">
+                    {/* <div className="bg-white rounded-lg h-full overflow-auto"> */}
+                      <div className="text-black text-sm">
+                        <div className="bg-gray-100 p-2 rounded">
+                          {/* <h3 className="font-bold text-lg mb-2">Landing Page Preview</h3> */}
 
-                        {/* Iframe Preview Box */}
-                        <div className="rounded relative overflow-hidden border border-gray-300 h-[450px]">
-                          <iframe
-                            src="https://landing-page-all.replit.app/"   // 👈 replace with your landing page route or full URL
-                            // src="https://www.weoneai.com/"   // 👈 replace with your landing page route or full URL
-                            title="Landing Page Preview"
-                            className="w-full h-full"
-                            frameBorder="0"
-                          ></iframe>
+                          {/* Iframe Preview Box */}
+                          <div className="rounded relative overflow-hidden border border-gray-300 h-[500px]">
+                            <iframe
+                              src="https://landing-page-all.replit.app/"   // 👈 replace with your landing page route or full URL
+                              title="Landing Page Preview"
+                              className="w-full h-full"
+                              frameBorder="0"
+                            ></iframe>
 
 
-                          <div className="absolute top-3 left-12 -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-lg text-lg font-semibold shadow-md">
-                            {userCompany}
+                            <div className="absolute top-2 left-2 bg-black/50 text-white px-4 py-2 rounded-lg text-lg font-semibold shadow-md">
+                              {userCompany}
+                            </div>
+
                           </div>
 
                         </div>
-
                       </div>
-                    </div>
+                    {/* </div> */}
                   </div>
-                </div>
 
+                  <div className='flex my-6 items-center justify-center'>
+                    <Link className='bg-blue-500 hover:bg-blue-600 transition ease-in px-8 font-semibold py-3 rounded-lg' href="https://cal.com/weoneai/30min">Make it Better</Link>
+                  </div>
 
+                </>
 
 
               )}
@@ -358,8 +344,8 @@ function ResultsContent() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="flex justify-center mt-10"
           >
-            <Link href="https://calendly.com/weoneai-info/linkedin" className="bg-gradient-to-r cursor-pointer from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold px-8 py-4 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300">
-              Book a Strategy Call
+            <Link href="https://cal.com/weoneai/30min" className="bg-gradient-to-r cursor-pointer from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold px-8 py-4 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300">
+              Automate your Business with AI Now
             </Link>
           </motion.div>
 
@@ -369,32 +355,10 @@ function ResultsContent() {
 
 
 
-        {/* <section className='text-center m-20'>
-          <div className='text-2xl font-semibold'>This is not perfect yet. We’ll make it perfect with our <span className='text-blue-400'>HUMAN TOUCH</span> and <span className='text-blue-400'>CREATIVITY</span>. To see the final version, book a call with us.</div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="flex justify-center space-x-4 mt-8"
-          >
-
-
-            <button
-              className="bg-blue-500 cursor-pointer hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-colors"
-            >
-              Book a Strategy Call
-            </button>
-          </motion.div>
-        </section> */}
-
-
       </div>
     </div>
 
   );
-
-
 
 
 

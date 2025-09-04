@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 border-t border-gray-800 bg-dark-secondary/50 backdrop-blur-sm" data-testid="footer">
+    <footer className="z-10 border-t border-gray-800 bg-dark-secondary/50 backdrop-blur-sm" data-testid="footer">
       <div className="max-w-6xl mx-auto px-6 py-12">
 
         {/* Action Buttons */}

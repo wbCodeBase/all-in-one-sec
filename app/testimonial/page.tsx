@@ -136,7 +136,7 @@ export default function TestimonialsPage() {
 
                                         <div className="flex items-center gap-4 pt-4 border-t border-slate-700/50">
                                             <div className="relative">
-                                                <Image
+                                                <Image width="30" height={30}
                                                     src={testimonial.image || "/placeholder.svg"}
                                                     alt={testimonial.name}
                                                     className="w-14 h-14 rounded-full object-cover border-2 border-blue-500/30 shadow-lg"
@@ -170,9 +170,9 @@ export default function TestimonialsPage() {
                             The results speak for themselves.&quot;
                         </blockquote>
                         <div className="flex items-center justify-center gap-4">
-                            <Image
+                            <Image width="30" height="30"
                                 src="https://st4.depositphotos.com/34939642/39232/v/450/depositphotos_392322342-stock-illustration-businessman-avatar-icon-vector-illustration.jpg"
-                                alt="Featured client"
+                                alt="Featured client" 
                                 className="w-15 h-15 rounded-full border-2 border-blue-500"
                             />
                             <div className="text-left">

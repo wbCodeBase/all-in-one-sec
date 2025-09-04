@@ -15,7 +15,7 @@ export default function Navigation() {
       
       <div className="flex items-center space-x-4" data-testid="auth-buttons">
         {/* <button className="px-4 py-2 text-gray-300 hover:text-white transition-colors" data-testid="button-login">Log in</button> */}
-        <Link href="https://cal.com/weoneai/30min" className="px-4 py-2 bg-white text-dark-primary rounded-full cursor-pointer hover:bg-gray-100 transition-colors font-medium" data-testid="button-signup">Book Demo</Link>
+        <Link href="https://cal.com/weoneai/30min" className="px-4 py-2 bg-white text-dark-primary rounded-full cursor-pointer hover:bg-gray-100 transition-colors font-medium" data-testid="button-signup">Book a Call</Link>
       </div>
     </nav>
   );
