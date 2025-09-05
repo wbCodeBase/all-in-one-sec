@@ -14,12 +14,13 @@ export default function PromptInputBox({ onPromptChange }: PromptInputBoxProps) 
   const [isTyping, setIsTyping] = useState(true);
 
   const placeholders = [
-    "I want to automatically qualify leads for my real estate business, nurture them with personalized emails...",
-    "Help me create a system to generate high-converting landing pages for my marketing campaigns, track visitor behavior...",
-    "I need to automate my customer support workflow, create chatbots that can handle common inquiries...",
-    "Build me a lead generation funnel that captures prospects from social media, qualifies them through...",
-    "I want to create promotional videos for my products automatically, generate social media content...",
-    "Help me set up an automated email marketing system that segments my customers..."
+    "I run an IT services firm. I want steady leads and booked sales meetings.",
+    "I want to grow my business with more leads and less manual work.",
+    "Help me automate my sales funnel so I can focus on closing deals.",
+    "Help me qualify SaaS leads automatically and move them to my sales team.",
+    "I’m a real estate broker I want more qualified buyer leads and faster closings.",
+    "Help me automate follow-ups so my open house leads book calls automatically.",
+    "Show me how I can turn online property inquiries into signed deals.",
   ];
 
   const currentPlaceholder = placeholders[currentPlaceholderIndex];
