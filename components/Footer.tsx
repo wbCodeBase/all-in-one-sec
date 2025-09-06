@@ -1,9 +1,12 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+
 
 export default function Footer() {
   const [showPromptGuide, setShowPromptGuide] = useState(false);
+  const [open, setOpen] = useState(false)
 
   return (
     <footer className="z-10 border-t border-gray-800 bg-dark-secondary/50 backdrop-blur-sm">
@@ -11,7 +14,7 @@ export default function Footer() {
 
         {/* Action Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-8">
-          <button className="flex cursor-pointer items-center space-x-2 px-6 py-3 bg-accent-green text-white rounded-lg hover:bg-accent-green/90 transition-colors font-medium">
+          <button onClick={() => setOpen(true)} className="flex cursor-pointer items-center space-x-2 px-6 py-3 bg-accent-green text-white rounded-lg hover:bg-accent-green/90 transition-colors font-medium">
             <span>▶️</span>
             <span>Watch demo</span>
           </button>
@@ -127,6 +130,26 @@ export default function Footer() {
       </div>
 
 
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="max-w-6xl w-full p-0 bg-card border-border shadow-2xl rounded-2xl overflow-hidden">
+          <DialogHeader className="p-8 pb-0">
+            <DialogTitle className="text-3xl font-bold font-no text-card-foreground text-center">
+              See Our AI + Human Automation in Action
+            </DialogTitle>
+            <p className="text-muted-foreground mt-3 text-center text-lg">
+              Watch how IT business owners are transforming their operations
+            </p>
+          </DialogHeader>
+          <div className="p-8 pt-4">
+            <div className="w-full aspect-video bg-muted rounded-xl overflow-hidden shadow-2xl">
+              <video controls autoPlay className="w-full h-full object-cover" poster="/demo-thumbnail.jpg">
+                <source src="/demo.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
     </footer>
   );
@@ -136,72 +159,3 @@ export default function Footer() {
 
 
 
-
-
-
-// "use client"
-
-// import Link from "next/link";
-// import { useState } from "react";
-
-// export default function Footer() {
-
-//   const [showPromptGuide, setShowPromptGuide] = useState(false);
-
-//   return (
-//     <footer className="z-10 border-t border-gray-800 bg-dark-secondary/50 backdrop-blur-sm" data-testid="footer">
-//       <div className="max-w-6xl mx-auto px-6 py-12">
-
-//         {/* Action Buttons */}
-//         <div className="flex flex-wrap justify-center gap-4 mb-8" data-testid="action-buttons">
-//           <button className="flex cursor-pointer items-center space-x-2 px-6 py-3 bg-accent-green text-white rounded-lg hover:bg-accent-green/90 transition-colors font-medium" data-testid="button-watch-demo">
-//             <span>▶️</span>
-//             <span>Watch demo</span>
-//           </button>
-//           <button onClick={() => setShowPromptGuide(true)} className="flex cursor-pointer items-center space-x-2 px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium" data-testid="button-how-to-prompt">
-//             <span>💡</span>
-//             <span>How to prompt WeoneAI</span>
-//           </button>
-//           {/* <button className="flex items-center space-x-2 px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium" data-testid="button-documentation">
-//             <span>📚</span>
-//             <span>Documentation</span>
-//           </button> */}
-//         </div>
-
-//         {/* Social Links */}
-//         {/* <div className="flex justify-center space-x-6 mb-8" data-testid="social-links">
-//           <a href="#" className="text-gray-400 hover:text-white transition-colors" data-testid="link-github">
-//             <span className="text-xl">🐙</span>
-//           </a>
-//           <a href="#" className="text-gray-400 hover:text-white transition-colors" data-testid="link-youtube">
-//             <span className="text-xl">📺</span>
-//           </a>
-//           <a href="#" className="text-gray-400 hover:text-white transition-colors" data-testid="link-discord">
-//             <span className="text-xl">💬</span>
-//           </a>
-//           <a href="#" className="text-gray-400 hover:text-white transition-colors" data-testid="link-twitter">
-//             <span className="text-xl">🐦</span>
-//           </a>
-//         </div> */}
-
-//         {/* Links */}
-//         <div className="flex justify-center space-x-8 text-sm" data-testid="footer-links">
-//           <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link>
-//           <Link href="/terms" className="text-gray-400 hover:text-white transition-colors" >Terms</Link>
-//           <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors" >Privacy</Link>
-//         </div>
-
-
-//         <div className="mt-10 text-gray-400 flex justify-center">
-//           <div>© {new Date().getFullYear()} weoneAI. All rights reserved.</div>
-//         </div>
-
-//       </div>
-
-
-
-
-
-//     </footer>
-//   );
-// }

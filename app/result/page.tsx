@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import Navigation from '@/components/Navigation';
+// import Navigation from '@/components/Navigation';
 
 
 
@@ -336,6 +336,8 @@ function ResultsContent() {
           {/* Decorative subtle background effect */}
           <div className="absolute inset-0 -z-10 opacity-20 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.15),transparent)]"></div>
         </section>
+
+
 
 
 

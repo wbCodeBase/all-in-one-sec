@@ -1,32 +1,18 @@
 "use client"
 
-
-// import { useSearchParams } from "next/navigation"
-// import Link from "next/link";
-// import { Suspense } from "react";
-// import { motion } from 'framer-motion';
-
-
-
 import { useState, useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-// import Navigation from '@/components/Navigation';
+import WatchDemo from '@/components/WatchDemo';
 
 
 function EkFunction() {
 
-  // const searchParams = useSearchParams();
-  // const business = searchParams.get("business");
-
-
   const searchParams = useSearchParams();
   const navigate = useRouter();
-  // const [isGeneratingVideo, setIsGeneratingVideo] = useState(true);
-  // const [isGeneratingLanding, setIsGeneratingLanding] = useState(true);
 
 
   // Onboarding states
@@ -166,7 +152,7 @@ function EkFunction() {
       <Suspense
         fallback={<div className="flex items-center justify-center min-h-screen bg-[#F9F9F7]">Loading plan...</div>}
       >
-        <div className="min-h-scree bg-black">
+        <div className="bg-black">
 
           <nav className="z-20 flex justify-between items-center p-6 lg:px-12" data-testid="navigation">
             <div className="flex items-center space-x-2" data-testid="brand-logo">
@@ -200,9 +186,7 @@ function EkFunction() {
             Hello <span className="text-white font-bold">{userName}</span>,
             <br />
             <span className="text-gray-300">
-              we’ve crafted a preview tailored to your request. Below you’ll find a sample video
-              creative and landing page designed to help you attract the right audience and
-              convert them into customers effortlessly.
+              To generate more sales on autopilot, you need strong creatives, high-impact videos and a focused landing page. We’ll promote them on the right channels so your ideal customers see you, click and convert.
             </span>
           </p>
 
@@ -210,11 +194,8 @@ function EkFunction() {
 
 
           {/* Section 1: Mobile Phone Mockups with Videos */}
-          <section className="py-20 px-4">
+          <section className="py-10 md:py-16 px-4">
             <div className="container mx-auto">
-              {/* <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 via-purple-500 to-blue-500 bg-clip-text text-transparent">
-                Our Diverse Chatbots
-              </h2> */}
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -225,13 +206,14 @@ function EkFunction() {
                 <p className="text-gray-400">Based on your request: &apos;{userPrompt}&apos;</p>
               </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+
+
+              <div className='text-white text-center mb-8 text-2xl font-semibold'>Your First Draft Ad Creative</div>
+
+              <div className="grid items-center justify-center grid-cols-1 md:grid-cols-3 md:gap-12 gap-y-8 md:gap-y-0 max-w-6xl mx-auto">
+
                 {/* First Mobile Setup */}
-                <div className="flex flex-col items-center group">
-
-
-
-                  <div className='text-white mb-8 text-lg font-semibold'>Your First Draft Ad Creative</div>
+                <div className="flex flex-col col-span-1 items-center group">
 
 
                   <div className="relative w-80 h-[600px] mx-auto bg-gradient-to-b from-gray-700 to-gray-900 rounded-[3.5rem] p-3 shadow-2xl hover:shadow-blue-500/30 transition-all duration-500 group-hover:scale-105 border-2 border-gray-800">
@@ -261,29 +243,125 @@ function EkFunction() {
                     </div>
                   </div>
 
-                  <Link href="https://cal.com/weoneai/30min" className="mt-8 bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full shadow-xl transition-all duration-300 text-lg font-semibold cursor-pointer transform hover:scale-105">
+                  {/* <Link href="https://cal.com/weoneai/30min" className="mt-8 bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full shadow-xl transition-all duration-300 text-lg font-semibold cursor-pointer transform hover:scale-105">
                     Make it Better
-                  </Link>
+                  </Link> */}
                 </div>
 
                 {/* Second Mobile Setup */}
-                <div className="flex flex-col items-center group">
+                <div className="flex flex-col col-span-2 items-center group">
+
+                  {/* <div className='text-white mb-8 text-lg font-semibold'>Your Sample Landing Page</div> */}
+
+                  <div className="w-full max-w-7xl mx-auto">
+                    <div className="relative mx-auto bg-gradient-to-b from-gray-700 to-gray-900 rounded-t-3xl p-6 shadow-2xl hover:shadow-purple-500/40 transition-all duration-500">
+                      {/* Laptop Screen */}
+                      <div className="relative bg-black rounded-2xl overflow-hidden shadow-inner border border-gray-600">
+                        <div className="aspect-video">
 
 
-                  <div className='text-white mb-8 text-lg font-semibold'>Your Sample Landing Page</div>
+                          <video className="w-full h-full object-cover" autoPlay loop muted playsInline>
+                            <source
+                              src="videotemplate.mp4"
+                              type="video/mp4"
+                            />
+                          </video>
+
+                          {/* <div className="absolute top-3 left-3  text-white/60 px-4 py-2 text-lg"> */}
+
+                          <div className="absolute top-1 left-1 text-gray-500 px-4 py-2 font-semibold italic text-lg">
+                            {userCompany}
+                          </div>
+
+                        </div>
+
+                        {/* Screen Reflection */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 via-transparent to-purple-500/10 pointer-events-none rounded-2xl" />
+                      </div>
+
+                      {/* Laptop Camera */}
+                      <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gray-800 rounded-full border border-gray-500" />
+                    </div>
+
+                    {/* Laptop Base */}
+                    <div className="relative h-16 bg-gradient-to-b from-gray-700 to-gray-900 rounded-b-3xl shadow-2xl mx-auto max-w-7xl border-x border-b border-gray-600">
+                      {/* Trackpad */}
+                      <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-40 h-8 bg-gray-600 rounded-xl border border-gray-500" />
+                    </div>
+
+                    {/* Laptop Stand Shadow */}
+                    <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-96 h-6 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent rounded-full blur-sm" />
+                  </div>
 
 
-                  <div className="relative w-84 h-[600px] mx-auto bg-gradient-to-b from-gray-700 to-gray-900 rounded-[3.5rem] p-3 shadow-2xl hover:shadow-blue-500/30 transition-all duration-500 group-hover:scale-105 border-2 border-gray-800">
+                </div>
+
+              </div>
+            </div>
+
+            <div className='flex justify-center items-center'>
+              <Link href="https://cal.com/weoneai/30min" className="mt-8 bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full transition-all duration-300 text-lg font-semibold cursor-pointer transform hover:scale-105">
+                Make it Better
+              </Link>
+            </div>
+
+          </section>
+
+
+
+
+          {/* Section 1: Mobile Phone Mockups with Videos */}
+          <section className="py-10 md:py-16 px-4">
+            <div className="container mx-auto">
+
+              <div className='text-white text-center mb-8 text-2xl font-semibold'>Your Sample Landing Page</div>
+
+              <div className="grid items-center justify-center grid-cols-1 md:grid-cols-3 md:gap-12 gap-y-8 md:gap-y-0 max-w-6xl mx-auto">
+
+                {/* First Mobile Setup */}
+                <div className="flex flex-col col-span-1 items-center group">
+
+
+                  <div className="relative w-80 h-[600px] mx-auto bg-gradient-to-b from-gray-700 to-gray-900 rounded-[3.5rem] p-3 shadow-2xl hover:shadow-blue-500/30 transition-all duration-500 group-hover:scale-105 border-2 border-gray-800">
+                    {/* iPhone Outer Frame */}
                     <div className="w-full h-full bg-gradient-to-b from-gray-900 to-black rounded-[3rem] relative overflow-hidden border border-gray-700">
+                      {/* Dynamic Island */}
                       {/* <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-36 h-9 bg-black rounded-full z-10 border border-gray-600" /> */}
 
-                      <div className="absolute inset-0 rounded-[3rem] overflow-hidden">
 
-                        <div className="absolute top-2 left-3 text-gray-500 px-4 py-2 font-semibold italic text-lg">
+                      {/* Screen Content */}
+                      <div className="absolute inset-0 rounded-[3rem] overflow-hidden">
+                        <iframe
+                          src="https://landing-page-all.replit.app/"   // 👈 replace with your landing page route or full URL
+                          title="Landing Page Preview"
+                          className="w-full h-full"
+                          frameBorder="0"
+                        ></iframe>
+
+                        <div className="absolute top-2 left-3 text-gray-400 px-4 py-2 font-semibold italic text-lg">
                           {userCompany}
                         </div>
 
-                        {businessType === "IT" ?
+                      </div>
+
+                      {/* Home Indicator */}
+                      <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-36 h-1.5 bg-white/40 rounded-full" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Second Mobile Setup */}
+                <div className="flex flex-col col-span-2 items-center group">
+
+                  {/* <div className='text-white mb-8 text-lg font-semibold'>Your Sample Landing Page</div> */}
+
+                  <div className="w-full max-w-7xl mx-auto">
+                    <div className="relative mx-auto bg-gradient-to-b from-gray-700 to-gray-900 rounded-t-3xl p-6 shadow-2xl hover:shadow-purple-500/40 transition-all duration-500">
+                      {/* Laptop Screen */}
+                      <div className="relative bg-black rounded-2xl overflow-hidden shadow-inner border border-gray-600">
+                        <div className="aspect-video">
+
+
                           <iframe
                             src="https://landing-page-all.replit.app/"   // 👈 replace with your landing page route or full URL
                             title="Landing Page Preview"
@@ -291,159 +369,44 @@ function EkFunction() {
                             frameBorder="0"
                           ></iframe>
 
-                          :
-                          businessType === "Real Estate" ?
+                          {/* <div className="absolute top-3 left-3  text-white/60 px-4 py-2 text-lg"> */}
 
-                            <iframe
-                              src="https://landing-page-all.replit.app/"   // 👈 replace with your landing page route or full URL
-                              title="Landing Page Preview"
-                              className="w-full h-full"
-                              frameBorder="0"
-                            ></iframe>
+                          <div className="absolute top-1 left-1 text-gray-500 px-4 py-2 font-semibold italic text-lg">
+                            {userCompany}
+                          </div>
 
-                            : null}
+                        </div>
 
+                        {/* Screen Reflection */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 via-transparent to-purple-500/10 pointer-events-none rounded-2xl" />
                       </div>
 
-                      <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-36 h-1.5 bg-white/40 rounded-full" />
+                      {/* Laptop Camera */}
+                      <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gray-800 rounded-full border border-gray-500" />
                     </div>
+
+                    {/* Laptop Base */}
+                    <div className="relative h-16 bg-gradient-to-b from-gray-700 to-gray-900 rounded-b-3xl shadow-2xl mx-auto max-w-7xl border-x border-b border-gray-600">
+                      {/* Trackpad */}
+                      <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-40 h-8 bg-gray-600 rounded-xl border border-gray-500" />
+                    </div>
+
+                    {/* Laptop Stand Shadow */}
+                    <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-96 h-6 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent rounded-full blur-sm" />
                   </div>
 
-                  <Link href="https://cal.com/weoneai/30min" className="mt-8 bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full transition-all duration-300 text-lg font-semibold cursor-pointer transform hover:scale-105">
-                    Make it Better
-                  </Link>
-                </div>
 
+                </div>
 
               </div>
             </div>
-          </section>
 
-          {/* Section 2: Desktop with YouTube Video */}
-          <section className="py-14 px-4 bg-gradient-to-b from-black via-gray-900/30 to-black">
-            <div className="container mx-auto text-center">
-              <h2 className="text-3xl font-semibold mb-10 text-white bg-clip-text">
-                Your First Draft Ad Creative in Desktop
-              </h2>
-
-              <div className="w-full max-w-5xl mx-auto">
-                <div className="relative mx-auto bg-gradient-to-b from-gray-700 to-gray-900 rounded-t-3xl p-6 shadow-2xl hover:shadow-purple-500/40 transition-all duration-500">
-                  {/* Laptop Screen */}
-                  <div className="relative bg-black rounded-2xl overflow-hidden shadow-inner border border-gray-600">
-                    <div className="aspect-video">
-
-
-                      <video className="w-full h-full object-cover" autoPlay loop muted playsInline>
-                        <source
-                          src="videotemplate.mp4"
-                          type="video/mp4"
-                        />
-                      </video>
-
-                      {/* <div className="absolute top-3 left-3  text-white/60 px-4 py-2 text-lg"> */}
-
-                      <div className="absolute top-4 left-4 text-gray-500 px-4 py-2 font-semibold italic text-lg">
-                        {userCompany}
-                      </div>
-
-                    </div>
-
-                    {/* Screen Reflection */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 via-transparent to-purple-500/10 pointer-events-none rounded-2xl" />
-                  </div>
-
-                  {/* Laptop Camera */}
-                  <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gray-800 rounded-full border border-gray-500" />
-                </div>
-
-                {/* Laptop Base */}
-                <div className="relative h-16 bg-gradient-to-b from-gray-700 to-gray-900 rounded-b-3xl shadow-2xl mx-auto max-w-7xl border-x border-b border-gray-600">
-                  {/* Trackpad */}
-                  <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-40 h-8 bg-gray-600 rounded-xl border border-gray-500" />
-                </div>
-
-                {/* Laptop Stand Shadow */}
-                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-96 h-6 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent rounded-full blur-sm" />
-              </div>
-
-
-
-              <div className="mt-16 space-y-8">
-                {/* <p className="text-xl md:text-2xl text-white max-w-4xl mx-auto text-pretty leading-relaxed">
-                  Get the complete desktop experience with our comprehensive setup guide. Perfect for power users who want
-                  to maximize their productivity and unlock advanced features.
-                </p> */}
-
-                <Link href="https://cal.com/weoneai/30min" className="bg-blue-500 hover:bg-blue-600 text-white px-12 py-4 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 text-xl font-semibold cursor-pointer transform hover:scale-105">
-                  Get Started Now
-                </Link>
-              </div>
+            <div className='flex justify-center items-center'>
+              <Link href="https://cal.com/weoneai/30min" className="mt-8 bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full transition-all duration-300 text-lg font-semibold cursor-pointer transform hover:scale-105">
+                Make it Better
+              </Link>
             </div>
-          </section>
 
-
-
-
-
-          {/* Section  */}
-          <section className="py-14 px-4 bg-gradient-to-b from-black via-gray-900/30 to-black">
-            <div className="container mx-auto text-center">
-              <h2 className="text-3xl font-semibold mb-10 text-white bg-clip-text">
-                Your Sample Landing Page in Desktop
-              </h2>
-
-              <div className="w-full max-w-5xl mx-auto">
-                <div className="relative mx-auto bg-gradient-to-b from-gray-700 to-gray-900 rounded-t-3xl p-6 shadow-2xl hover:shadow-purple-500/40 transition-all duration-500">
-                  {/* Laptop Screen */}
-                  <div className="relative bg-black rounded-2xl overflow-hidden shadow-inner border border-gray-600">
-                    <div className="aspect-video">
-
-
-                      <iframe
-                        src="https://landing-page-all.replit.app/"   // 👈 replace with your landing page route or full URL
-                        title="Landing Page Preview"
-                        className="w-full h-full"
-                        frameBorder="0"
-                      ></iframe>
-
-
-                    </div>
-
-
-                    <div className="absolute top-4 left-4 text-gray-500 px-4 py-2 font-semibold italic text-lg">
-                      {userCompany}
-                    </div>
-
-                    {/* Screen Reflection */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 via-transparent to-purple-500/10 pointer-events-none rounded-2xl" />
-                  </div>
-
-                  {/* Laptop Camera */}
-                  <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gray-800 rounded-full border border-gray-500" />
-                </div>
-
-                {/* Laptop Base */}
-                <div className="relative h-16 bg-gradient-to-b from-gray-700 to-gray-900 rounded-b-3xl shadow-2xl mx-auto max-w-7xl border-x border-b border-gray-600">
-                  {/* Trackpad */}
-                  <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-40 h-8 bg-gray-600 rounded-xl border border-gray-500" />
-                </div>
-
-                {/* Laptop Stand Shadow */}
-                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-96 h-6 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent rounded-full blur-sm" />
-              </div>
-
-
-              <div className="mt-16 space-y-8">
-                {/* <p className="text-xl md:text-2xl text-white max-w-4xl mx-auto text-pretty leading-relaxed">
-                  Get the complete desktop experience with our comprehensive setup guide. Perfect for power users who want
-                  to maximize their productivity and unlock advanced features.
-                </p> */}
-
-                <Link href="https://cal.com/weoneai/30min" className="bg-green-500 hover:bg-green-600 text-white px-12 py-4 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 text-xl font-semibold cursor-pointer transform hover:scale-105">
-                  Get Started Now
-                </Link>
-              </div>
-            </div>
           </section>
 
 
@@ -487,6 +450,9 @@ function EkFunction() {
 
 
         </div>
+
+       <WatchDemo />
+
 
 
       </Suspense>
