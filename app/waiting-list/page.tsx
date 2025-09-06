@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Check, ChevronRight   } from "lucide-react";
+import { Mail, Check, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -19,6 +19,7 @@ import Navigation from "@/components/Navigation";
 export default function WaitlistPage() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [company, setCompany] = useState("");
     const [industry, setIndustry] = useState("");
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState("");
@@ -30,15 +31,44 @@ export default function WaitlistPage() {
 
     const validateEmail = (val: string) => /[^\s@]+@[^\s@]+\.[^\s@]+/.test(val);
 
-    const onSubmit = (e: React.FormEvent) => {
+
+
+    const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
         if (!name.trim()) return setError("Please enter your name.");
         if (!validateEmail(email)) return setError("Please enter a valid email.");
         if (!industry) return setError("Please select your industry.");
         // You can replace this with your real submit logic / API call
-        setSubmitted(true);
+
+
+        try {
+            const response = await fetch('/api/send-in-ghl', {
+                method: 'POST',
+                headers: {  
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: name, email: email, company: company, message: "I want to join the waitlist." })
+            });
+
+            const result = await response.json();
+
+            console.log(result, "result");
+            
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Something went wrong');
+            }
+
+            setSubmitted(true);
+
+        } catch (error) {
+            console.error('Demo submission error:', error);
+        }
+
     };
+
+
 
     return (
         <main className="min-h-screen w-full bg-slate-950 text-slate-100 relative overflow-hidden">
@@ -51,7 +81,7 @@ export default function WaitlistPage() {
             </div>
 
             {/* Navbar */}
-                  <Navigation />
+            <Navigation />
 
 
             {/* Hero */}
@@ -228,7 +258,8 @@ export default function WaitlistPage() {
 
                             <div className="sm:col-span-1">
                                 <Label htmlFor="company">Company</Label>
-                                <Input id="company" placeholder="Company name" required className="mt-2 rounded-2xl" />
+                                <Input id="company" placeholder="Company name" required
+                                    onChange={(e) => setCompany(e.target.value)} className="mt-2 rounded-2xl" />
                             </div>
 
                             <div className="sm:col-span-2 flex items-center gap-2 text-sm text-slate-300">

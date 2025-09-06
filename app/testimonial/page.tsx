@@ -211,9 +211,9 @@ export default function TestimonialsPage() {
                     <div className="flex flex-wrap items-center justify-between gap-3">
                         <div>© {new Date().getFullYear()} weoneAI. All rights reserved.</div>
                         <div className="flex gap-4">
-                            <a href="#" className="hover:text-slate-200">Privacy</a>
-                            <a href="#" className="hover:text-slate-200">Terms</a>
-                            <a href="#" className="hover:text-slate-200">Contact</a>
+                            <a href="privacy" className="hover:text-slate-200">Privacy</a>
+                            <a href="terms" className="hover:text-slate-200">Terms</a>
+                            <a href="contact" className="hover:text-slate-200">Contact</a>
                         </div>
                     </div>
                 </footer>

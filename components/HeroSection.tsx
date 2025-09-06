@@ -32,7 +32,7 @@ export default function HeroSection() {
 
 
   const handleFeelingLucky = () => {
-    setCurrentPrompt("Build me a lead generation funnel that captures prospects from social media, qualifies them through...")
+    setCurrentPrompt("I run an IT services firm. I want steady leads and booked sales meetings...")
     localStorage.setItem('userPrompt', currentPrompt);
     setShowPopup(true);
   };
@@ -41,19 +41,38 @@ export default function HeroSection() {
     setShowPopup(false);
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
 
     const fullPhone = `${formData.countryCode}${formData.phone}`;
 
-    console.log("Full phone:", fullPhone);
+        try {
+      const response = await fetch('/api/send-in-ghl', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: formData.name, email: formData.email, phone: fullPhone, company: formData.company, message: currentPrompt })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Something went wrong');
+      }
+
+
+    } catch (error) {
+      console.error('Demo submission error:', error);
+    }
+
+    // console.log("Full phone:", fullPhone);
 
     // Store user data
-    localStorage.setItem('userName', formData.name);
-    localStorage.setItem('userEmail', formData.email);
-    localStorage.setItem('userCompany', formData.company);
-    localStorage.setItem('userPrompt', currentPrompt);
+    // localStorage.setItem('userName', formData.name);
+    // localStorage.setItem('userEmail', formData.email);
+    // localStorage.setItem('userCompany', formData.company);
+    // localStorage.setItem('userPrompt', currentPrompt);
 
     // Navigate to results page
     navigate.push(`/results?name=${encodeURIComponent(formData.name)}&email=${encodeURIComponent(formData.email)}&prompt=${encodeURIComponent(currentPrompt)}`);
@@ -385,7 +404,7 @@ export default function HeroSection() {
                       required
                       className="mr-2 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
-                    I agree to the <Link href="/" className="underline mx-1"> terms of service </Link> and <Link href="/" className="underline mx-1"> privacy policy </Link>.
+                    I agree to the <Link href="terms" className="underline mx-1"> terms of service </Link> and <Link href="privacy" className="underline mx-1"> privacy policy </Link>.
                   </label>
                 </div>
 
