@@ -1,32 +1,18 @@
 "use client"
 
-
-// import { useSearchParams } from "next/navigation"
-// import Link from "next/link";
-// import { Suspense } from "react";
-// import { motion } from 'framer-motion';
-
-
-
 import { useState, useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-// import Navigation from '@/components/Navigation';
+import WatchDemo from '@/components/WatchDemo';
 
 
 function EkFunction() {
 
-  // const searchParams = useSearchParams();
-  // const business = searchParams.get("business");
-
-
   const searchParams = useSearchParams();
   const navigate = useRouter();
-  // const [isGeneratingVideo, setIsGeneratingVideo] = useState(true);
-  // const [isGeneratingLanding, setIsGeneratingLanding] = useState(true);
 
 
   // Onboarding states
@@ -166,7 +152,7 @@ function EkFunction() {
       <Suspense
         fallback={<div className="flex items-center justify-center min-h-screen bg-[#F9F9F7]">Loading plan...</div>}
       >
-        <div className="min-h-scree bg-black">
+        <div className="bg-black">
 
           <nav className="z-20 flex justify-between items-center p-6 lg:px-12" data-testid="navigation">
             <div className="flex items-center space-x-2" data-testid="brand-logo">
@@ -208,7 +194,7 @@ function EkFunction() {
 
 
           {/* Section 1: Mobile Phone Mockups with Videos */}
-          <section className="py-20 px-4">
+          <section className="py-10 md:py-16 px-4">
             <div className="container mx-auto">
 
               <motion.div
@@ -220,14 +206,14 @@ function EkFunction() {
                 <p className="text-gray-400">Based on your request: &apos;{userPrompt}&apos;</p>
               </motion.div>
 
-              <div className="grid items-center justify-center grid-cols-1 md:grid-cols-3 md: gap-y-8 md:gap-y-0 max-w-6xl mx-auto">
+
+
+              <div className='text-white text-center mb-8 text-2xl font-semibold'>Your First Draft Ad Creative</div>
+
+              <div className="grid items-center justify-center grid-cols-1 md:grid-cols-3 md:gap-12 gap-y-8 md:gap-y-0 max-w-6xl mx-auto">
 
                 {/* First Mobile Setup */}
                 <div className="flex flex-col col-span-1 items-center group">
-
-
-
-                  <div className='text-white mb-8 text-lg font-semibold'>Your First Draft Ad Creative</div>
 
 
                   <div className="relative w-80 h-[600px] mx-auto bg-gradient-to-b from-gray-700 to-gray-900 rounded-[3.5rem] p-3 shadow-2xl hover:shadow-blue-500/30 transition-all duration-500 group-hover:scale-105 border-2 border-gray-800">
@@ -308,37 +294,32 @@ function EkFunction() {
                   </div>
 
 
-
                 </div>
+
               </div>
             </div>
 
-                {/* <Link href="https://cal.com/weoneai/30min" className="mt-8 bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full transition-all duration-300 text-lg font-semibold cursor-pointer transform hover:scale-105">
-                  Make it Better
-                </Link> */}
+            <div className='flex justify-center items-center'>
+              <Link href="https://cal.com/weoneai/30min" className="mt-8 bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full transition-all duration-300 text-lg font-semibold cursor-pointer transform hover:scale-105">
+                Make it Better
+              </Link>
+            </div>
 
           </section>
 
 
-          <section className="py-20 px-4">
+
+
+          {/* Section 1: Mobile Phone Mockups with Videos */}
+          <section className="py-10 md:py-16 px-4">
             <div className="container mx-auto">
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-16 text-center"
-              >
-                <h1 className="md:text-4xl text-3xl text-white font-bold mb-2">Your AI-Generated Content</h1>
-                <p className="text-gray-400">Based on your request: &apos;{userPrompt}&apos;</p>
-              </motion.div>
+              <div className='text-white text-center mb-8 text-2xl font-semibold'>Your Sample Landing Page</div>
 
-              <div className="grid items-center justify-center grid-cols-1 md:grid-cols-3 md:gap-12 max-w-6xl mx-auto">
+              <div className="grid items-center justify-center grid-cols-1 md:grid-cols-3 md:gap-12 gap-y-8 md:gap-y-0 max-w-6xl mx-auto">
 
                 {/* First Mobile Setup */}
                 <div className="flex flex-col col-span-1 items-center group">
-
-
-                  <div className='text-white mb-8 text-lg font-semibold'>Your Sample Landing Page</div>
 
 
                   <div className="relative w-80 h-[600px] mx-auto bg-gradient-to-b from-gray-700 to-gray-900 rounded-[3.5rem] p-3 shadow-2xl hover:shadow-blue-500/30 transition-all duration-500 group-hover:scale-105 border-2 border-gray-800">
@@ -350,7 +331,6 @@ function EkFunction() {
 
                       {/* Screen Content */}
                       <div className="absolute inset-0 rounded-[3rem] overflow-hidden">
-
                         <iframe
                           src="https://landing-page-all.replit.app/"   // 👈 replace with your landing page route or full URL
                           title="Landing Page Preview"
@@ -358,7 +338,7 @@ function EkFunction() {
                           frameBorder="0"
                         ></iframe>
 
-                        <div className="absolute top-2 left-4 text-gray-400 px-4 py-2 font-semibold italic text-lg">
+                        <div className="absolute top-2 left-3 text-gray-400 px-4 py-2 font-semibold italic text-lg">
                           {userCompany}
                         </div>
 
@@ -368,10 +348,6 @@ function EkFunction() {
                       <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-36 h-1.5 bg-white/40 rounded-full" />
                     </div>
                   </div>
-
-                  <Link href="https://cal.com/weoneai/30min" className="mt-8 bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full shadow-xl transition-all duration-300 text-lg font-semibold cursor-pointer transform hover:scale-105">
-                    Make it Better
-                  </Link>
                 </div>
 
                 {/* Second Mobile Setup */}
@@ -395,7 +371,7 @@ function EkFunction() {
 
                           {/* <div className="absolute top-3 left-3  text-white/60 px-4 py-2 text-lg"> */}
 
-                          <div className="absolute top-2 left-4 text-gray-500 px-4 py-2 font-semibold italic text-lg">
+                          <div className="absolute top-1 left-1 text-gray-500 px-4 py-2 font-semibold italic text-lg">
                             {userCompany}
                           </div>
 
@@ -420,125 +396,18 @@ function EkFunction() {
                   </div>
 
 
-                  <Link href="https://cal.com/weoneai/30min" className="mt-8 bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full transition-all duration-300 text-lg font-semibold cursor-pointer transform hover:scale-105">
-                    Make it Better
-                  </Link>
                 </div>
 
               </div>
             </div>
+
+            <div className='flex justify-center items-center'>
+              <Link href="https://cal.com/weoneai/30min" className="mt-8 bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full transition-all duration-300 text-lg font-semibold cursor-pointer transform hover:scale-105">
+                Make it Better
+              </Link>
+            </div>
+
           </section>
-
-          {/* Section 2: Desktop with YouTube Video */}
-          {/* <section className="py-14 px-4 bg-gradient-to-b from-black via-gray-900/30 to-black">
-            <div className="container mx-auto text-center">
-              <h2 className="text-3xl font-semibold mb-10 text-white bg-clip-text">
-                Your First Draft Ad Creative in Desktop
-              </h2>
-
-
-              <div className="relative w-84 h-[600px] mx-auto bg-gradient-to-b from-gray-700 to-gray-900 rounded-[3.5rem] p-3 shadow-2xl hover:shadow-blue-500/30 transition-all duration-500 group-hover:scale-105 border-2 border-gray-800">
-                <div className="w-full h-full bg-gradient-to-b from-gray-900 to-black rounded-[3rem] relative overflow-hidden border border-gray-700">
-                  
-                  <div className="absolute inset-0 rounded-[3rem] overflow-hidden">
-
-                    <div className="absolute top-2 left-3 text-gray-500 px-4 py-2 font-semibold italic text-lg">
-                      {userCompany}
-                    </div>
-
-                    {businessType === "IT" ?
-                      <iframe
-                        src="https://landing-page-all.replit.app/"   // 👈 replace with your landing page route or full URL
-                        title="Landing Page Preview"
-                        className="w-full h-full"
-                        frameBorder="0"
-                      ></iframe>
-
-                      :
-                      businessType === "Real Estate" ?
-
-                        <iframe
-                          src="https://landing-page-all.replit.app/"   // 👈 replace with your landing page route or full URL
-                          title="Landing Page Preview"
-                          className="w-full h-full"
-                          frameBorder="0"
-                        ></iframe>
-
-                        : null}
-
-                  </div>
-
-                  <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-36 h-1.5 bg-white/40 rounded-full" />
-                </div>
-              </div>
-
-
-
-
-              <div className="mt-16 space-y-8">
-
-                <Link href="https://cal.com/weoneai/30min" className="bg-blue-500 hover:bg-blue-600 text-white px-12 py-4 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 text-xl font-semibold cursor-pointer transform hover:scale-105">
-                  Get Started Now
-                </Link>
-              </div>
-            </div>
-          </section> */}
-
-
-
-
-
-          {/* Section  */}
-          {/* <section className="py-14 px-4 bg-gradient-to-b from-black via-gray-900/30 to-black">
-            <div className="container mx-auto text-center">
-              <h2 className="text-3xl font-semibold mb-10 text-white bg-clip-text">
-                Your Sample Landing Page in Desktop
-              </h2>
-
-              <div className="w-full max-w-5xl mx-auto">
-                <div className="relative mx-auto bg-gradient-to-b from-gray-700 to-gray-900 rounded-t-3xl p-6 shadow-2xl hover:shadow-purple-500/40 transition-all duration-500">
-                  
-                  <div className="relative bg-black rounded-2xl overflow-hidden shadow-inner border border-gray-600">
-                    <div className="aspect-video">
-
-
-                      <iframe
-                        src="https://landing-page-all.replit.app/"   // 👈 replace with your landing page route or full URL
-                        title="Landing Page Preview"
-                        className="w-full h-full"
-                        frameBorder="0"
-                      ></iframe>
-
-
-                    </div>
-
-
-                    <div className="absolute top-4 left-4 text-gray-500 px-4 py-2 font-semibold italic text-lg">
-                      {userCompany}
-                    </div>
-
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 via-transparent to-purple-500/10 pointer-events-none rounded-2xl" />
-                  </div>
-
-                  <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gray-800 rounded-full border border-gray-500" />
-                </div>
-
-                <div className="relative h-16 bg-gradient-to-b from-gray-700 to-gray-900 rounded-b-3xl shadow-2xl mx-auto max-w-7xl border-x border-b border-gray-600">
-                  
-                  <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-40 h-8 bg-gray-600 rounded-xl border border-gray-500" />
-                </div>
-
-                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-96 h-6 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent rounded-full blur-sm" />
-              </div>
-
-
-              <div className="mt-16 space-y-8">
-                <Link href="https://cal.com/weoneai/30min" className="bg-green-500 hover:bg-green-600 text-white px-12 py-4 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 text-xl font-semibold cursor-pointer transform hover:scale-105">
-                  Get Started Now
-                </Link>
-              </div>
-            </div>
-          </section> */}
 
 
 
@@ -581,6 +450,9 @@ function EkFunction() {
 
 
         </div>
+
+        <WatchDemo />
+
 
 
       </Suspense>

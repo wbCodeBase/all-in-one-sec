@@ -42,7 +42,7 @@ function ResultsContent() {
   useEffect(() => {
     // Try to get from URL first, else fallback to localStorage
     const prompt = searchParams.get('prompt') || localStorage.getItem('userPrompt') || '';
-    const name = searchParams.get('name') || localStorage.getItem('userName') || '';
+    // const name = searchParams.get('name') || localStorage.getItem('userName') || '';
     const company = searchParams.get('company') || localStorage.getItem('userCompany') || '';
     // const email = searchParams.get('email') || localStorage.getItem('userEmail') || '';
     setUserPrompt(prompt);
@@ -155,7 +155,7 @@ function ResultsContent() {
     <div className="min-h-screen bg-dark-primary text-white">
       {/* Header */}
 
-      <Navigation />
+      {/* <Navigation /> */}
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto p-6">

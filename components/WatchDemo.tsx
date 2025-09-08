@@ -17,7 +17,7 @@ export default function WatchDemo() {
               Still not convinced?
             </h2>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-12">
-              Here's how other IT business owners are scaling faster with our AI + Human Automation solution.
+              Here&apos;s how other IT business owners are scaling faster with our AI + Human Automation solution.
             </p>
 
             <Button
